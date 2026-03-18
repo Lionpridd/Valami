@@ -4,11 +4,6 @@ body{
     background: url("hatter.jpg") no-repeat center center fixed;
     background-size: cover;
     text-align:center;
-}body{
-margin:0;
-font-family:Arial;
-background:#f4f4f4;
-text-align:center;
 }
 
 header{
