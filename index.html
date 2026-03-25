@@ -66,8 +66,8 @@ nav a{
     opacity:0.4;
     animation:move 1s infinite alternate;
     
-    /* RANDOM Fuck you ujjak*/
-.fuck you ujjak{
+    /* RANDOM Fuck you*/
+.fuck you{
     position:absolute;
     width:60px;
     height:60px;
@@ -168,10 +168,15 @@ function toggleMusic(){
         music.pause();
         playing = false;
     }
-}
 
 // 🍔 VIDEÓ
 function openVideo(event){
+
+    if(!canClick){
+        event.preventDefault();
+        return;
+    }
+
     event.stopPropagation();
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
 }
