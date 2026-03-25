@@ -17,3 +17,6 @@ width:300px;
 margin:20px;
 border-radius:10px;
 }
+.main{
+    transition: top 0.2s, left 0.2s;
+}
