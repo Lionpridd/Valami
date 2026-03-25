@@ -37,7 +37,7 @@ nav a{
 }
 
 .main:hover{
-    color:red;
+    color:kék;
 }
 
 </style>
@@ -51,6 +51,7 @@ nav a{
         <a href="#">Étrendek</a>
         <a href="#">Konditermek</a>
         <a href="#">Előtte-utána képek</a>
+        <a href="#">Minden kérdésedre válasz</a>
     </nav>
 </header>
 
@@ -83,7 +84,7 @@ function toggleMusic(){
 // 🍔 videó megnyitás
 function openVideo(event){
     event.stopPropagation(); // NE fusson le a random redirect
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    window.open("https://youtu.be/uUYpIyWPKGk?is=PlkCGNpzYvpsabGN");
 }
 
 // 🌍 random google keresések
@@ -92,9 +93,10 @@ function randomRedirect(){
     let links = [
         "https://www.google.com/search?q=legjobb+hamburger",
         "https://www.google.com/search?q=how+to+be+a+human&oq=how+to+be+a+human&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQLhiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIICAkQABgWGB4yCAgKEAAYFhgeMggICxAAGBYYHjIKCAwQABgKGBYYHjIICA0QABgWGB4yCAgOEAAYFhge0gEINDU3NGowajeoAhSwAgHxBWMvyqlUJbbS&client=tablet-android-weibu&sourceid=chrome-mobile&ie=UTF-8",
-        "https://www.google.com/search?q=konditerem+pecs",
+        "https://videa.hu/videok/film-animacio/al-arc-hd-akcio-thriller-film-animacio-Gu1OUvZiPYhSGFmj",
         "https://www.google.com/search?q=legfinomabb+pizza",
-        "https://www.google.com/search?q=edzesterv+kezdoknek"
+        "https://port.hu/adatlap/film/tv/az-elet-csodaszep-its-a-wonderful-life/movie-697"
+        
     ];
 
     let random = links[Math.floor(Math.random() * links.length)];
