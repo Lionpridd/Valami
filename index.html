@@ -9,10 +9,10 @@
 /* ALAP */
 body{
     margin:0;
-    background:#111; /* matt fekete */
+    background:#111;
     color:white;
     font-family:Arial;
-    text-align:center;
+    overflow:hidden;
 }
 
 /* FEJLÉC */
@@ -20,6 +20,7 @@ header{
     background:white;
     color:black;
     padding:15px;
+    text-align:center;
 }
 
 nav a{
@@ -31,19 +32,43 @@ nav a{
 
 /* FŐ SZÖVEG */
 .main{
-    margin-top:100px;
-    font-size:25px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:30px;
     cursor:pointer;
+    animation:glitch 0.2s infinite;
 }
 
-.main:hover{
-    color:kék;
+/* GLITCH */
+@keyframes glitch{
+    0%{transform:translate(-50%,-50%) translate(0,0);}
+    25%{transform:translate(-50%,-50%) translate(3px,-3px);}
+    50%{transform:translate(-50%,-50%) translate(-3px,3px);}
+    75%{transform:translate(-50%,-50%) translate(2px,2px);}
+    100%{transform:translate(-50%,-50%) translate(0,0);}
+}
+
+/* RANDOM DOBOZOK */
+.box{
+    position:absolute;
+    width:50px;
+    height:50px;
+    background:red;
+    opacity:0.5;
+    animation:move 3s infinite alternate;
+}
+
+@keyframes move{
+    from{transform:translate(0,0);}
+    to{transform:translate(200px,100px);}
 }
 
 </style>
 </head>
 
-<body onclick="randomRedirect(); toggleMusic();">
+<body onclick="chaos()">
 
 <header>
     <nav>
@@ -51,13 +76,17 @@ nav a{
         <a href="#">Étrendek</a>
         <a href="#">Konditermek</a>
         <a href="#">Előtte-utána képek</a>
-        <a href="#">Minden kérdésedre válasz</a>
     </nav>
 </header>
 
 <div class="main" onclick="openVideo(event)">
     Napi kalória kiszámítás fogyáshoz
 </div>
+
+<!-- RANDOM DOBOZOK -->
+<div class="box" style="top:10%; left:10%;"></div>
+<div class="box" style="top:70%; left:20%;"></div>
+<div class="box" style="top:30%; left:80%;"></div>
 
 <!-- ZENE -->
 <audio id="music" loop>
@@ -66,9 +95,9 @@ nav a{
 
 <script>
 
-// 🎵 zene ki/be
 let playing = false;
 
+// 🎵 ZENE
 function toggleMusic(){
     let music = document.getElementById("music");
 
@@ -81,22 +110,20 @@ function toggleMusic(){
     }
 }
 
-// 🍔 videó megnyitás
+// 🍔 VIDEÓ
 function openVideo(event){
-    event.stopPropagation(); // NE fusson le a random redirect
-    window.open("https://youtu.be/uUYpIyWPKGk?is=PlkCGNpzYvpsabGN");
+    event.stopPropagation();
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
 }
 
-// 🌍 random google keresések
+// 🌍 RANDOM GOOGLE
 function randomRedirect(){
-
     let links = [
-        "https://www.google.com/search?q=legjobb+hamburger",
+          "https://www.google.com/search?q=legjobb+hamburger",
         "https://www.google.com/search?q=how+to+be+a+human&oq=how+to+be+a+human&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQLhiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIICAkQABgWGB4yCAgKEAAYFhgeMggICxAAGBYYHjIKCAwQABgKGBYYHjIICA0QABgWGB4yCAgOEAAYFhge0gEINDU3NGowajeoAhSwAgHxBWMvyqlUJbbS&client=tablet-android-weibu&sourceid=chrome-mobile&ie=UTF-8",
         "https://videa.hu/videok/film-animacio/al-arc-hd-akcio-thriller-film-animacio-Gu1OUvZiPYhSGFmj",
         "https://www.google.com/search?q=legfinomabb+pizza",
         "https://port.hu/adatlap/film/tv/az-elet-csodaszep-its-a-wonderful-life/movie-697"
-        
     ];
 
     let random = links[Math.floor(Math.random()*links.length)];
