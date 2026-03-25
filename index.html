@@ -2,11 +2,10 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>Kaotikus Fitness</title>
+<title>ULTRA KAOSZ FITNESS</title>
 
 <style>
 
-/* ALAP */
 body{
     margin:0;
     background:#111;
@@ -24,7 +23,7 @@ header{
 }
 
 nav a{
-    margin:0 15px;
+    margin:0 10px;
     text-decoration:none;
     color:black;
     font-weight:bold;
@@ -38,37 +37,53 @@ nav a{
     transform:translate(-50%,-50%);
     font-size:30px;
     cursor:pointer;
-    animation:glitch 0.2s infinite;
+    animation:glitch 0.1s infinite;
 }
 
 /* GLITCH */
 @keyframes glitch{
     0%{transform:translate(-50%,-50%) translate(0,0);}
-    25%{transform:translate(-50%,-50%) translate(3px,-3px);}
-    50%{transform:translate(-50%,-50%) translate(-3px,3px);}
-    75%{transform:translate(-50%,-50%) translate(2px,2px);}
-    100%{transform:translate(-50%,-50%) translate(0,0);}
+    50%{transform:translate(-50%,-50%) translate(5px,-5px);}
+    100%{transform:translate(-50%,-50%) translate(-5px,5px);}
+}
+
+/* VILLOGÁS */
+.flash{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:white;
+    opacity:0;
+    pointer-events:none;
 }
 
 /* RANDOM DOBOZOK */
 .box{
     position:absolute;
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     background:red;
-    opacity:0.5;
-    animation:move 3s infinite alternate;
+    opacity:0.4;
+    animation:move 1s infinite alternate;
 }
 
 @keyframes move{
     from{transform:translate(0,0);}
-    to{transform:translate(200px,100px);}
+    to{transform:translate(300px,150px);}
+}
+
+/* RANDOM SZÖVEG */
+.randomText{
+    position:absolute;
+    font-size:20px;
+    color:yellow;
+    pointer-events:none;
 }
 
 </style>
 </head>
 
-<body onclick="chaos()">
+<body onclick="ultraChaos()">
 
 <header>
     <nav>
@@ -83,12 +98,12 @@ nav a{
     Napi kalória kiszámítás fogyáshoz
 </div>
 
-<!-- RANDOM DOBOZOK -->
+<div class="flash" id="flash"></div>
+
 <div class="box" style="top:10%; left:10%;"></div>
-<div class="box" style="top:70%; left:20%;"></div>
+<div class="box" style="top:60%; left:30%;"></div>
 <div class="box" style="top:30%; left:80%;"></div>
 
-<!-- ZENE -->
 <audio id="music" loop>
     <source src="metal.mp3" type="audio/mpeg">
 </audio>
@@ -116,10 +131,10 @@ function openVideo(event){
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
 }
 
-// 🌍 RANDOM GOOGLE
+// 🌍 RANDOM REDIRECT
 function randomRedirect(){
     let links = [
-          "https://www.google.com/search?q=legjobb+hamburger",
+        "https://www.google.com/search?q=legjobb+hamburger",
         "https://www.google.com/search?q=how+to+be+a+human&oq=how+to+be+a+human&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQLhiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIICAkQABgWGB4yCAgKEAAYFhgeMggICxAAGBYYHjIKCAwQABgKGBYYHjIICA0QABgWGB4yCAgOEAAYFhge0gEINDU3NGowajeoAhSwAgHxBWMvyqlUJbbS&client=tablet-android-weibu&sourceid=chrome-mobile&ie=UTF-8",
         "https://videa.hu/videok/film-animacio/al-arc-hd-akcio-thriller-film-animacio-Gu1OUvZiPYhSGFmj",
         "https://www.google.com/search?q=legfinomabb+pizza",
@@ -128,23 +143,51 @@ function randomRedirect(){
 
     let random = links[Math.floor(Math.random()*links.length)];
 
-    setTimeout(()=>{
-        window.location.href = random;
-    }, 800);
+    if(Math.random() < 0.4){
+        setTimeout(()=>{ window.location.href = random; }, 1000);
+    }
 }
 
-// 💥 KÁOSZ FUNKCIÓ
-function chaos(){
+// 💥 FLASH
+function flashEffect(){
+    let flash = document.getElementById("flash");
+    flash.style.opacity = 0.8;
+    setTimeout(()=>{ flash.style.opacity = 0; }, 100);
+}
+
+// 🧠 RANDOM SZÖVEG
+function spawnText(){
+    let text = document.createElement("div");
+    text.className = "randomText";
+
+    let words = ["EDZ!", "NE EGYÉL!", "DE MÉGIS!", "PROTEIN!", "PIZZA!", "FUSS!"];
+
+    text.innerText = words[Math.floor(Math.random()*words.length)];
+
+    text.style.top = Math.random()*100 + "%";
+    text.style.left = Math.random()*100 + "%";
+
+    document.body.appendChild(text);
+
+    setTimeout(()=>{ text.remove(); }, 1000);
+}
+
+// 💀 ULTRA KÁOSZ
+function ultraChaos(){
     toggleMusic();
     randomRedirect();
+    flashEffect();
+    spawnText();
 
-    // random ugrás a szövegnek
+    // SZÖVEG UGRÁLÁS
     let main = document.querySelector(".main");
     main.style.top = Math.random()*90 + "%";
     main.style.left = Math.random()*90 + "%";
+
+    // OLDAL REZGÉS
+    document.body.style.transform = "translate(" + (Math.random()*10-5) + "px," + (Math.random()*10-5) + "px)";
 }
 
 </script>
-
 </body>
 </html>
