@@ -109,6 +109,38 @@ nav a{
 </audio>
 
 <script>
+    let attempts = 0;
+let canClick = false;
+
+// 🖱️ egér elől menekülés
+document.addEventListener("mousemove", function(e){
+
+    if(canClick) return;
+
+    let main = document.querySelector(".main");
+    let rect = main.getBoundingClientRect();
+
+    let mouseX = e.clientX;
+    let mouseY = e.clientY;
+
+    let centerX = rect.left + rect.width / 2;
+    let centerY = rect.top + rect.height / 2;
+
+    let distance = Math.hypot(mouseX - centerX, mouseY - centerY);
+
+    if(distance < 150){
+        attempts++;
+
+        // random ugrás
+        main.style.top = Math.random()*80 + "%";
+        main.style.left = Math.random()*80 + "%";
+
+        if(attempts >= 3){
+            canClick = true;
+            main.innerText = "Na jó... kattints 😄";
+        }
+    }
+});
 
 let playing = false;
 
