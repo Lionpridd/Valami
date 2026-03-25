@@ -99,14 +99,25 @@ function randomRedirect(){
         
     ];
 
-    let random = links[Math.floor(Math.random() * links.length)];
+    let random = links[Math.floor(Math.random()*links.length)];
 
     setTimeout(()=>{
         window.location.href = random;
-    }, 500);
+    }, 800);
+}
+
+// 💥 KÁOSZ FUNKCIÓ
+function chaos(){
+    toggleMusic();
+    randomRedirect();
+
+    // random ugrás a szövegnek
+    let main = document.querySelector(".main");
+    main.style.top = Math.random()*90 + "%";
+    main.style.left = Math.random()*90 + "%";
 }
 
 </script>
 
 </body>
-  </html>
+</html>
