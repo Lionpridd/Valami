@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Kaotikus Fitness</title>
+
+<style>
+
+/* ALAP */
+body{
+    margin:0;
+    background:#111; /* matt fekete */
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+
+/* FEJLÉC */
+header{
+    background:white;
+    color:black;
+    padding:15px;
+}
+
+nav a{
+    margin:0 15px;
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+/* FŐ SZÖVEG */
+.main{
+    margin-top:100px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.main:hover{
+    color:red;
+}
+
+</style>
+</head>
+
+<body onclick="randomRedirect(); toggleMusic();">
+
+<header>
+    <nav>
+        <a href="#">Minek?</a>
+        <a href="#">Étrendek</a>
+        <a href="#">Konditermek</a>
+        <a href="#">Előtte-utána képek</a>
+    </nav>
+</header>
+
+<div class="main" onclick="openVideo(event)">
+    Napi kalória kiszámítás fogyáshoz
+</div>
+
+<!-- ZENE -->
+<audio id="music" loop>
+    <source src="metal.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// 🎵 zene ki/be
+let playing = false;
+
+function toggleMusic(){
+    let music = document.getElementById("music");
+
+    if(!playing){
+        music.play();
+        playing = true;
+    }else{
+        music.pause();
+        playing = false;
+    }
+}
+
+// 🍔 videó megnyitás
+function openVideo(event){
+    event.stopPropagation(); // NE fusson le a random redirect
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+}
+
+// 🌍 random google keresések
+function randomRedirect(){
+
+    let links = [
+        "https://www.google.com/search?q=legjobb+hamburger",
+        "https://www.google.com/search?q=gyors+fogyas",
+        "https://www.google.com/search?q=konditerem+pecs",
+        "https://www.google.com/search?q=legfinomabb+pizza",
+        "https://www.google.com/search?q=edzesterv+kezdoknek"
+    ];
+
+    let random = links[Math.floor(Math.random() * links.length)];
+
+    setTimeout(()=>{
+        window.location.href = random;
+    }, 500);
+}
+
+</script>
+
+</body>
+</html>
