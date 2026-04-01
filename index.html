@@ -5,7 +5,6 @@
 <title>ULTRA KAOSZ FITNESS</title>
 
 <style>
-
 body{
     margin:0;
     background:#111;
@@ -38,7 +37,6 @@ nav a{
     font-size:30px;
     cursor:pointer;
     animation:glitch 0.1s infinite;
-    transition:top 0.2s, left 0.2s;
 }
 
 /* GLITCH */
@@ -48,17 +46,16 @@ nav a{
     100%{transform:translate(-50%,-50%) translate(-5px,5px);}
 }
 
-/* VILLOGÁS */
+/* FLASH */
 .flash{
     position:fixed;
     width:100%;
     height:100%;
     background:white;
     opacity:0;
-    pointer-events:none;
 }
 
-/* MOZGÓ DOBOZOK */
+/* DOBOZOK */
 .box, .fuckyou{
     position:absolute;
     width:60px;
@@ -68,10 +65,6 @@ nav a{
     animation:move 1s infinite alternate;
 }
 
-<div class="fuckyou" style="top:20%; left:20%;"></div>
-<div class="fuckyou" style="top:50%; left:50%;"></div>
-}
-
 @keyframes move{
     from{transform:translate(0,0);}
     to{transform:translate(300px,150px);}
@@ -82,63 +75,52 @@ nav a{
     position:absolute;
     font-size:20px;
     color:yellow;
-    pointer-events:none;
 }
-
 </style>
 </head>
 
 <body onclick="ultraChaos()">
 
 <header>
-    <nav>
-        <a href="#">Minek?</a>
-        <a href="#">Étrendek</a>
-        <a href="#">Konditermek</a>
-        <a href="#">Előtte-utána képek</a>
-        <a href="#">Minden kérdésedre válasz</a>
-    </nav>
+<nav>
+<a href="#">Minek?</a>
+<a href="#">Étrendek</a>
+<a href="#">Konditermek</a>
+<a href="#">Előtte-utána képek</a>
+<a href="#">Minden kérdésedre válasz</a>
+</nav>
 </header>
 
 <div class="main" onclick="openVideo(event)">
-    Napi kalória kiszámítás fogyáshoz
+Napi kalória kiszámítás fogyáshoz
 </div>
 
 <div class="flash" id="flash"></div>
 
 <div class="box" style="top:10%; left:10%;"></div>
 <div class="box" style="top:60%; left:30%;"></div>
-<div class="box" style="top:30%; left:80%;"></div>
 
 <div class="fuckyou" style="top:20%; left:20%;"></div>
-<div class="fuckyou" style="top:70%; left:40%;"></div>
-<div class="fuckyou" style="top:40%; left:70%;"></div>
 
 <audio id="music" loop>
-    <source src="metal.mp3" type="audio/mpeg">
+<source src="metal.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-
 let attempts = 0;
 let canClick = false;
 let playing = false;
 
-// 🖱️ egér elől menekülés
 document.addEventListener("mousemove", function(e){
-
     if(canClick) return;
 
     let main = document.querySelector(".main");
     let rect = main.getBoundingClientRect();
 
-    let mouseX = e.clientX;
-    let mouseY = e.clientY;
-
-    let centerX = rect.left + rect.width / 2;
-    let centerY = rect.top + rect.height / 2;
-
-    let distance = Math.hypot(mouseX - centerX, mouseY - centerY);
+    let distance = Math.hypot(
+        e.clientX - (rect.left + rect.width/2),
+        e.clientY - (rect.top + rect.height/2)
+    );
 
     if(distance < 150){
         attempts++;
@@ -153,7 +135,7 @@ document.addEventListener("mousemove", function(e){
     }
 });
 
-// 🎵 ZENE
+// ZENE
 function toggleMusic(){
     let music = document.getElementById("music");
 
@@ -166,26 +148,22 @@ function toggleMusic(){
     }
 }
 
-// 🍔 VIDEÓ
+// VIDEÓ
 function openVideo(event){
-
     if(!canClick){
         event.preventDefault();
         return;
     }
 
     event.stopPropagation();
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 }
 
-// 🌍 RANDOM REDIRECT
+// RANDOM
 function randomRedirect(){
     let links = [
-        "https://www.google.com/search?q=hamburger",
         "https://www.google.com/search?q=pizza",
-        "https://www.google.com/search?q=gyors+fogyas",
-        "https://www.youtube.com/watch?v=U5oIvU0-0nI",
-        "https://www.google.com/search?q=legjobb+kaja"
+        "https://www.google.com/search?q=hamburger"
     ];
 
     let random = links[Math.floor(Math.random()*links.length)];
@@ -195,241 +173,36 @@ function randomRedirect(){
     }
 }
 
-// 💥 FLASH
+// FLASH
 function flashEffect(){
     let flash = document.getElementById("flash");
     flash.style.opacity = 0.8;
     setTimeout(()=>{ flash.style.opacity = 0; }, 100);
 }
 
-// 🧠 RANDOM SZÖVEG
+// SZÖVEG
 function spawnText(){
     let text = document.createElement("div");
     text.className = "randomText";
 
-    let words = ["EDZ!", "NE EGYÉL!", "DE MÉGIS!", "PROTEIN!", "PIZZA!", "FUSS!"];
-
+    let words = ["NE EDZ!", "PIZZA!", "NE FUSS!"];
     text.innerText = words[Math.floor(Math.random()*words.length)];
 
     text.style.top = Math.random()*100 + "%";
     text.style.left = Math.random()*100 + "%";
 
     document.body.appendChild(text);
-
     setTimeout(()=>{ text.remove(); }, 1000);
 }
 
-// 💀 ULTRA KÁOSZ
+// KÁOSZ
 function ultraChaos(){
     toggleMusic();
     randomRedirect();
     flashEffect();
     spawnText();
-
-    let main = document.querySelector(".main");
-    main.style.top = Math.random()*90 + "%";
-    main.style.left = Math.random()*90 + "%";
-
-    document.body.style.transform =
-        "translate(" + (Math.random()*10-5) + "px," + (Math.random()*10-5) + "px)";
 }
-
 </script>
 
-</body>
-</html>    transform:translate(-50%,-50%);
-    font-size:30px;
-    cursor:pointer;
-    animation:glitch 0.1s infinite;
-}
-
-/* GLITCH */
-@keyframes glitch{
-    0%{transform:translate(-50%,-50%) translate(0,0);}
-    50%{transform:translate(-50%,-50%) translate(5px,-5px);}
-    100%{transform:translate(-50%,-50%) translate(-5px,5px);}
-}
-
-/* VILLOGÁS */
-.flash{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:white;
-    opacity:0;
-    pointer-events:none;
-}
-
-/* RANDOM DOBOZOK */
-.box{
-    position:absolute;
-    width:60px;
-    height:60px;
-    background:red;
-    opacity:0.4;
-    animation:move 1s infinite alternate;
-
-}
-
-@keyframes move{
-    from{transform:translate(0,0);}
-    to{transform:translate(300px,150px);}
-}
-
-/* RANDOM SZÖVEG */
-.randomText{
-    position:absolute;
-    font-size:20px;
-    color:yellow;
-    pointer-events:none;
-}
-
-</style>
-</head>
-
-<body onclick="ultraChaos()">
-
-<header>
-    <nav>
-        <a href="#">Minek?</a>
-        <a href="#">Étrendek</a>
-        <a href="#">Konditermek</a>
-        <a href="#">Előtte-utána képek</a>
-        <a href="#">Minden kérdésedre válasz</a>
-    </nav>
-</header>
-
-<div class="main" onclick="openVideo(event)">
-    Napi kalória kiszámítás fogyáshoz
-</div>
-
-<div class="flash" id="flash"></div>
-
-<div class="box" style="top:10%; left:10%;"></div>
-<div class="box" style="top:60%; left:30%;"></div>
-<div class="box" style="top:30%; left:80%;"></div>
-<audio id="music" loop>
-    <source src="metal.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    let attempts = 0;
-let canClick = false;
-
-// 🖱️ egér elől menekülés
-document.addEventListener("mousemove", function(e){
-
-    if(canClick) return;
-
-    let main = document.querySelector(".main");
-    let rect = main.getBoundingClientRect();
-
-    let mouseX = e.clientX;
-    let mouseY = e.clientY;
-
-    let centerX = rect.left + rect.width / 2;
-    let centerY = rect.top + rect.height / 2;
-
-    let distance = Math.hypot(mouseX - centerX, mouseY - centerY);
-
-    if(distance < 150){
-        attempts++;
-
-        // random ugrás
-        main.style.top = Math.random()*80 + "%";
-        main.style.left = Math.random()*80 + "%";
-
-        if(attempts >= 3){
-            canClick = true;
-            main.innerText = "Na jó... kattints 😄";
-        }
-    }
-});
-
-let playing = false;
-
-// 🎵 ZENE
-function toggleMusic(){
-    let music = document.getElementById("music");
-
-    if(!playing){
-        music.play();
-        playing = true;
-    }else{
-        music.pause();
-        playing = false;
-    }
-
-// 🍔 VIDEÓ
-function openVideo(event){
-
-    if(!canClick){
-        event.preventDefault();
-        return;
-    }
-
-    event.stopPropagation();
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
-}
-
-// 🌍 RANDOM REDIRECT
-function randomRedirect(){
-    let links = [
-        "https://www.google.com/search?q=legjobb+hamburger",
-        "https://www.google.com/search?q=how+to+be+a+human&oq=how+to+be+a+human&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQLhiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIICAkQABgWGB4yCAgKEAAYFhgeMggICxAAGBYYHjIKCAwQABgKGBYYHjIICA0QABgWGB4yCAgOEAAYFhge0gEINDU3NGowajeoAhSwAgHxBWMvyqlUJbbS&client=tablet-android-weibu&sourceid=chrome-mobile&ie=UTF-8",
-        "https://videa.hu/videok/film-animacio/al-arc-hd-akcio-thriller-film-animacio-Gu1OUvZiPYhSGFmj",
-        "https://www.google.com/search?q=legfinomabb+pizza",
-        "https://port.hu/adatlap/film/tv/az-elet-csodaszep-its-a-wonderful-life/movie-697"
-        "https://article.yahoo.co.jp/detail/0fee511e8cb08cdafb41f9db9e34e2b9a7b0eab6"
-    ];
-
-    let random = links[Math.floor(Math.random()*links.length)];
-
-    if(Math.random() < 0.4){
-        setTimeout(()=>{ window.location.href = random; }, 1000);
-    }
-}
-
-// 💥 FLASH
-function flashEffect(){
-    let flash = document.getElementById("flash");
-    flash.style.opacity = 0.8;
-    setTimeout(()=>{ flash.style.opacity = 0; }, 100);
-}
-
-// 🧠 RANDOM SZÖVEG
-function spawnText(){
-    let text = document.createElement("div");
-    text.className = "randomText";
-
-    let words = ["EDZ!", "NE EGYÉL!", "DE MÉGIS!", "PROTEIN!", "PIZZA!", "FUSS!"];
-
-    text.innerText = words[Math.floor(Math.random()*words.length)];
-
-    text.style.top = Math.random()*100 + "%";
-    text.style.left = Math.random()*100 + "%";
-
-    document.body.appendChild(text);
-
-    setTimeout(()=>{ text.remove(); }, 1000);
-}
-
-// 💀 ULTRA KÁOSZ
-function ultraChaos(){
-    toggleMusic();
-    randomRedirect();
-    flashEffect();
-    spawnText();
-
-    // SZÖVEG UGRÁLÁS
-    let main = document.querySelector(".main");
-    main.style.top = Math.random()*90 + "%";
-    main.style.left = Math.random()*90 + "%";
-
-    // OLDAL REZGÉS
-    document.body.style.transform = "translate(" + (Math.random()*10-5) + "px," + (Math.random()*10-5) + "px)";
-}<div class="fuckyou"></div>
-
-</script>
 </body>
 </html>
