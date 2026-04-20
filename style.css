@@ -48,14 +48,50 @@ nav a:hover{
     100%{transform:translate(-50%,-50%) translate(-5px,5px);}
 }
 
-/* MOZGÓ DOBOZOK */
+/* ZSÍRBÓL SZÜLETŐ DOBOZOK */
 .box, .fuckyou{
     position:absolute;
     width:60px;
     height:60px;
-    background:red;
-    opacity:0.4;
-    animation:move 1s infinite alternate;
+    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
+    opacity:0.8;
+    border-radius:20%;
+    animation:
+        move 2s infinite alternate,
+        grow 0.6s ease-out;
+}
+
+/* GYORSABB KÁOSZ */
+.fuckyou{
+    background:radial-gradient(circle, #ff69b4, #8a2be2);
+    animation:
+        move 0.8s infinite alternate,
+        grow 0.4s ease-out;
+}
+
+/* MOZGÁS */
+@keyframes move{
+    from{transform:translate(0,0);}
+    to{transform:translate(300px,150px);}
+}
+
+/* "ZSÍRBÓL KINÖVÉS" ANIMÁCIÓ */
+@keyframes grow{
+    0%{
+        transform:scale(0);
+        filter:blur(10px);
+        opacity:0;
+        border-radius:50%;
+    }
+    50%{
+        transform:scale(1.2);
+    }
+    100%{
+        transform:scale(1);
+        filter:blur(0);
+        opacity:0.8;
+        border-radius:20%;
+    }
 }
 
 .fuckyou{
