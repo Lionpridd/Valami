@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
- <link rel="stylesheet" href="style.css">   
 <meta charset="UTF-8">
 <title>ULTRA KAOSZ FITNESS</title>
 
@@ -15,21 +14,16 @@ body{
 }
 
 /* 🌈 DINAMIKUS HÁTTÉR */
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    z-index:-1;
-    background:linear-gradient(45deg, #111, #222);
-    transition:0.2s;
+body{
+    background:#111;
+    transition:background 0.2s;
 }
 
 /* ✨ MODERN FEJLÉC */
 header{
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     background:rgba(255,255,255,0.1);
-    padding:15px;
+    padding:20px;
     text-align:center;
     border-bottom:1px solid rgba(255,255,255,0.2);
 }
@@ -83,10 +77,10 @@ nav a:hover{
     to{transform:translate(300px,150px);}
 }
 
-/* RANDOM FELUGRÓ SZÖVEG */
+/* FELUGRÓ SZÖVEG */
 .popup{
     position:absolute;
-    font-size:25px;
+    font-size:22px;
     color:#00ffcc;
     opacity:0;
     pointer-events:none;
@@ -132,10 +126,10 @@ let attempts = 0;
 let canClick = false;
 let playing = false;
 
-/* 🖱️ EGÉR ELŐL MENEKÜL */
+/* 🖱️ EGÉR + HÁTTÉR */
 document.addEventListener("mousemove", function(e){
 
-    // háttér szín változás
+    // háttér színátmenet
     document.body.style.background =
         "radial-gradient(circle at " + e.clientX + "px " + e.clientY + "px, #00ffcc, #111)";
 
@@ -200,18 +194,28 @@ function randomRedirect(){
     }
 }
 
-/* 💥 FELUGRÓ SZÖVEG */
+/* 💥 FELUGRÓ SZÖVEGEK */
 function spawnPopup(){
-    let text = document.createElement("div");
-    text.className = "popup";
-    text.innerText = "ne higgy nekünk! költs";
+    let texts = [
+        "ne higgy nekünk!",
+        "költsd el minden pénzed!",
+        "fáj, mi?",
+        "minek ez?",
+        "nem kell?",
+        "nem az én dolgom!"
+    ];
 
-    text.style.top = Math.random()*80 + "%";
-    text.style.left = Math.random()*80 + "%";
+    let popup = document.createElement("div");
+    popup.className = "popup";
 
-    document.body.appendChild(text);
+    popup.innerText = texts[Math.floor(Math.random()*texts.length)];
 
-    setTimeout(()=>{ text.remove(); }, 1000);
+    popup.style.top = Math.random()*70 + "%";
+    popup.style.left = Math.random()*80 + "%";
+
+    document.body.appendChild(popup);
+
+    setTimeout(()=>{ popup.remove(); }, 1000);
 }
 
 /* 💀 KÁOSZ */
@@ -220,7 +224,7 @@ function ultraChaos(){
     randomRedirect();
 }
 
-/* ⏱️ AUTOMATA SZÖVEG (2 mp-enként) */
+/* ⏱️ AUTOMATA FELUGRÁS */
 setInterval(spawnPopup, 2000);
 
 </script>
