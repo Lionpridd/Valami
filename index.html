@@ -227,7 +227,28 @@ function ultraChaos(){
 /* ⏱️ AUTOMATA FELUGRÁS */
 setInterval(spawnPopup, 2000);
 
-</script>
+</script>// 💀 ÚJ DOBOZOK SPAWN
+function spawnBoxes(){
+
+    let box = document.createElement("div");
+
+    // random típus
+    box.className = Math.random() > 0.5 ? "box" : "fuckyou";
+
+    // random pozíció (fejléc alatt)
+    box.style.top = (Math.random()*80 + 10) + "%";
+    box.style.left = Math.random()*100 + "%";
+
+    document.body.appendChild(box);
+
+    // eltűnik egy idő után (káosz kontroll)
+    setTimeout(()=>{
+        box.remove();
+    }, 4000);
+}
+
+// folyamatos spawn
+setInterval(spawnBoxes, 300);
 
 </body>
 </html>
