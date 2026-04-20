@@ -61,7 +61,7 @@ nav a:hover{
         grow 0.6s ease-out;
 }
 
-/* GYORSABB, "AGRESSZÍV" */
+/* GYORSABB */
 .fuckyou{
     background:radial-gradient(circle, #ff69b4, #8a2be2);
     animation:
@@ -79,7 +79,7 @@ nav a:hover{
     }
 }
 
-/* 💥 ZSÍRBÓL KINÖVÉS */
+/* 💥 KINÖVÉS */
 @keyframes grow{
     0%{
         transform:scale(0);
@@ -87,18 +87,50 @@ nav a:hover{
         opacity:0;
         border-radius:50%;
     }
-    40%{
-        transform:scale(1.3);
-    }
-    70%{
-        transform:scale(0.9);
-    }
+    40%{transform:scale(1.3);}
+    70%{transform:scale(0.9);}
     100%{
         transform:scale(1);
         filter:blur(0);
         opacity:0.85;
         border-radius:30%;
     }
+}
+
+/* 💀 ÉLŐ ZSÍRLÉNY */
+.creature{
+    position:absolute;
+    width:70px;
+    height:70px;
+    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
+    border-radius:50%;
+    opacity:0.9;
+    animation:
+        move 3s infinite alternate,
+        breathe 1.5s infinite,
+        grow 0.5s ease-out;
+}
+
+/* 👀 SZEMEK */
+.creature::before,
+.creature::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:black;
+    border-radius:50%;
+    top:20px;
+}
+
+.creature::before{ left:18px; }
+.creature::after{ right:18px; }
+
+/* 🫁 LÉGZÉS */
+@keyframes breathe{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
 }
 
 /* FELUGRÓ SZÖVEG */
