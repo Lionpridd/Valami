@@ -6,17 +6,20 @@
 
 <style>
 
-/* ALAP */
 body{
     margin:0;
     color:white;
     font-family:Arial;
     overflow:hidden;
+}
+
+/* 🌈 DINAMIKUS HÁTTÉR */
+body{
     background:#111;
     transition:background 0.2s;
 }
 
-/* FEJLÉC */
+/* ✨ MODERN FEJLÉC */
 header{
     backdrop-filter: blur(12px);
     background:rgba(255,255,255,0.1);
@@ -30,6 +33,11 @@ nav a{
     text-decoration:none;
     color:white;
     font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#00ffcc;
 }
 
 /* FŐ SZÖVEG */
@@ -49,20 +57,19 @@ nav a{
     100%{transform:translate(-50%,-50%) translate(-5px,5px);}
 }
 
-/* ZSÍR DOBOZOK */
+/* DOBOZOK */
 .box, .fuckyou{
     position:absolute;
     width:60px;
     height:60px;
-    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
-    opacity:0.85;
-    border-radius:30%;
-    animation:move 2s infinite alternate, grow 0.6s ease-out;
+    background:red;
+    opacity:0.4;
+    animation:move 1s infinite alternate;
 }
 
 .fuckyou{
-    background:radial-gradient(circle, #ff69b4, #8a2be2);
-    animation:move 0.8s infinite alternate, grow 0.4s ease-out;
+    background:purple;
+    animation:move 0.2s infinite alternate;
 }
 
 @keyframes move{
@@ -70,55 +77,13 @@ nav a{
     to{transform:translate(300px,150px);}
 }
 
-@keyframes grow{
-    0%{
-        transform:scale(0);
-        filter:blur(12px);
-        opacity:0;
-        border-radius:50%;
-    }
-    100%{
-        transform:scale(1);
-        filter:blur(0);
-        opacity:0.85;
-    }
-}
-
-/* 💀 ZSÍRLÉNY */
-.creature{
-    position:absolute;
-    width:70px;
-    height:70px;
-    background:radial-gradient(circle, #ffd6a5, #ff7b7b);
-    border-radius:50%;
-    animation:blobMove 2s infinite alternate;
-    box-shadow:0 0 20px rgba(255,120,120,0.7);
-}
-
-.creature::before, .creature::after{
-    content:"";
-    position:absolute;
-    width:10px;
-    height:10px;
-    background:black;
-    border-radius:50%;
-    top:20px;
-}
-
-.creature::before{ left:18px; }
-.creature::after{ right:18px; }
-
-@keyframes blobMove{
-    from{transform:translate(0,0) scale(1);}
-    to{transform:translate(50px,30px) scale(1.2);}
-}
-
-/* POPUP */
+/* FELUGRÓ SZÖVEG */
 .popup{
     position:absolute;
     font-size:22px;
     color:#00ffcc;
     opacity:0;
+    pointer-events:none;
     animation:fade 1s;
 }
 
@@ -147,6 +112,10 @@ nav a{
 Napi kalória kiszámítás fogyáshoz
 </div>
 
+<div class="box" style="top:10%; left:10%;"></div>
+<div class="box" style="top:60%; left:30%;"></div>
+<div class="fuckyou" style="top:30%; left:70%;"></div>
+
 <audio id="music" loop>
 <source src="metal.mp3" type="audio/mpeg">
 </audio>
@@ -157,9 +126,10 @@ let attempts = 0;
 let canClick = false;
 let playing = false;
 
-/* EGÉR */
+/* 🖱️ EGÉR + HÁTTÉR */
 document.addEventListener("mousemove", function(e){
 
+    // háttér színátmenet
     document.body.style.background =
         "radial-gradient(circle at " + e.clientX + "px " + e.clientY + "px, #00ffcc, #111)";
 
@@ -175,17 +145,18 @@ document.addEventListener("mousemove", function(e){
 
     if(distance < 150){
         attempts++;
+
         main.style.top = Math.random()*80 + "%";
         main.style.left = Math.random()*80 + "%";
 
         if(attempts >= 3){
             canClick = true;
-            main.innerText = "Máris 4000 kalóriát égettél 😄 kattints";
+            main.innerText = "Na jó... kattints 😄";
         }
     }
 });
 
-/* ZENE */
+/* 🎵 ZENE */
 function toggleMusic(){
     let music = document.getElementById("music");
 
@@ -198,22 +169,22 @@ function toggleMusic(){
     }
 }
 
-/* VIDEÓ */
+/* 🍔 VIDEÓ */
 function openVideo(event){
     if(!canClick){
         event.preventDefault();
         return;
     }
+
     event.stopPropagation();
-    window.open(" window.open("https://www.youtube.com/watch?v=TIfAkOBMf5A&list=RDTIfAkOBMf5A&start_radio=1");");
+    window.open("https://www.youtube.com/watch?v=TIfAkOBMf5A&list=RDTIfAkOBMf5A&start_radio=1");
 }
 
-/* RANDOM */
+/* 🌍 RANDOM */
 function randomRedirect(){
     let links = [
         "https://www.google.com/search?q=pizza",
         "https://www.google.com/search?q=hamburger",
-        "https://www.google.com/search?q=legjobb+gyros",
         "https://hellomagyar.hu/2024/03/04/megdobbento-felfedezes-rakot-okozhat-a-fogyas/",
         "https://www.bing.com/search?q=how+to+be+a+human",
         "https://learnupnest.com/how-to-be-an-asshole/",
@@ -227,63 +198,46 @@ function randomRedirect(){
     }
 }
 
-/* POPUP */
+/* 💥 FELUGRÓ SZÖVEGEK */
 function spawnPopup(){
-    let texts = ["ne higgy nekünk!", "költsd el minden pénzed!", "fáj, mi?", "minek ez?",
+    let texts = [
+        "ne higgy nekünk!",
+        "költsd el minden pénzed!",
+        "fáj, mi?",
+        "minek ez?",
         "nem kell?",
-        "nem az én dolgom!",
+        "nem az én dolgom!"
         "fáljon tovább",
         "csak azzal foglalkozom hogy ki mit csinál",
         "szeretem a zsíroskenyeret",
         "megeszem a világot",
-        "gyökszikeh"];
+        "gyökszikeh"
+    ];
 
     let popup = document.createElement("div");
     popup.className = "popup";
+
     popup.innerText = texts[Math.floor(Math.random()*texts.length)];
 
     popup.style.top = Math.random()*70 + "%";
     popup.style.left = Math.random()*80 + "%";
 
     document.body.appendChild(popup);
+
     setTimeout(()=>{ popup.remove(); }, 1000);
 }
 
-/* DOBOZ */
-function spawnBoxes(){
-    let box = document.createElement("div");
-    box.className = Math.random() > 0.5 ? "box" : "fuckyou";
-    box.style.top = (Math.random()*80 + 10) + "%";
-    box.style.left = Math.random()*100 + "%";
-    document.body.appendChild(box);
-    setTimeout(()=>{ box.remove(); }, 4000);
-}
-
-/* 💀 ZSÍRLÉNY */
-function spawnCreature(){
-    let c = document.createElement("div");
-    c.className = "creature";
-
-    c.style.top = (Math.random()*80 + 10) + "%";
-    c.style.left = Math.random()*100 + "%";
-
-    document.body.appendChild(c);
-
-    setTimeout(()=>{ c.remove(); }, 6000);
-}
-
-/* KÁOSZ */
+/* 💀 KÁOSZ */
 function ultraChaos(){
     toggleMusic();
     randomRedirect();
 }
 
-/* LOOP */
+/* ⏱️ AUTOMATA FELUGRÁS */
 setInterval(spawnPopup, 2000);
-setInterval(spawnBoxes, 300);
-setInterval(spawnCreature, 800);
 
 </script>
 
 </body>
+</html>
 </html>
