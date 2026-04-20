@@ -205,7 +205,7 @@ function openVideo(event){
         return;
     }
     event.stopPropagation();
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    window.open(" window.open("https://www.youtube.com/watch?v=TIfAkOBMf5A&list=RDTIfAkOBMf5A&start_radio=1");");
 }
 
 /* RANDOM */
@@ -213,7 +213,11 @@ function randomRedirect(){
     let links = [
         "https://www.google.com/search?q=pizza",
         "https://www.google.com/search?q=hamburger",
-        "https://www.google.com/search?q=legjobb+gyros"
+        "https://www.google.com/search?q=legjobb+gyros",
+        "https://hellomagyar.hu/2024/03/04/megdobbento-felfedezes-rakot-okozhat-a-fogyas/",
+        "https://www.bing.com/search?q=how+to+be+a+human",
+        "https://learnupnest.com/how-to-be-an-asshole/",
+        "https://www.bing.com/search?q=technológiai+fejlődés"
     ];
 
     let random = links[Math.floor(Math.random()*links.length)];
@@ -225,7 +229,14 @@ function randomRedirect(){
 
 /* POPUP */
 function spawnPopup(){
-    let texts = ["ne higgy nekünk!", "költsd el minden pénzed!", "fáj, mi?"];
+    let texts = ["ne higgy nekünk!", "költsd el minden pénzed!", "fáj, mi?", "minek ez?",
+        "nem kell?",
+        "nem az én dolgom!",
+        "fáljon tovább",
+        "csak azzal foglalkozom hogy ki mit csinál",
+        "szeretem a zsíroskenyeret",
+        "megeszem a világot",
+        "gyökszikeh"];
 
     let popup = document.createElement("div");
     popup.className = "popup";
