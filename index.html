@@ -172,7 +172,7 @@ document.addEventListener("mousemove", function(e){
 
         if(attempts >= 3){
             canClick = true;
-            main.innerText = "Na jó... kattints 😄";
+            main.innerText = "Máris 4000 kalóriát égettél, gratulálok, kattints";
         }
     }
 });
@@ -198,14 +198,18 @@ function openVideo(event){
     }
 
     event.stopPropagation();
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    window.open("https://www.youtube.com/watch?v=TIfAkOBMf5A&list=RDTIfAkOBMf5A&start_radio=1");
 }
 
 /* RANDOM */
 function randomRedirect(){
     let links = [
         "https://www.google.com/search?q=pizza",
-        "https://www.google.com/search?q=hamburger"
+        "https://www.google.com/search?q=hamburger",
+        "https://hellomagyar.hu/2024/03/04/megdobbento-felfedezes-rakot-okozhat-a-fogyas/"
+    "https://www.bing.com/search?qs=UT&pq=how+to+be+a+human&sk=CSYN1&sc=14-17&q=how+to+be+a+human+being&cvid=c2ca6f0f68884d92ac90f54194a9c969&gs_lcrp=EgRlZGdlKgcIABAAGPkHMgcIABAAGPkHMgYIARBFGDkyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQABhAMgYIBxAAGEAyBwgIEOsHGEDSAQg2MTI2ajBqNKgCALACAA&FORM=ANAB01&PC=U531",
+        "https://learnupnest.com/how-to-be-an-asshole/#:~:text=Discover%20how%20to%20act%20like%20an%20asshole%20by,for%20everyone%20but%20provides%20insights%20into%20these%20behaviors.",
+        "https://www.bing.com/search?q=Vajon+a+technol%C3%B3giai+fejl%C5%91d%C3%A9s+elker%C3%BClhetetlen-e+mindaddig%2C+am%C3%ADg+az+emberek+l%C3%A9teznek%3F&cvid=b9d78eeb33794d429b7aea65d90fe071&gs_lcrp=EgRlZGdlKgYIABBFGDkyBggAEEUYOTIHCAEQ6wcYQNIBBzI3OGowajSoAgiwAgE&FORM=ANAB01&PC=U531"
     ];
 
     let random = links[Math.floor(Math.random()*links.length)];
@@ -223,7 +227,12 @@ function spawnPopup(){
         "fáj, mi?",
         "minek ez?",
         "nem kell?",
-        "nem az én dolgom!"
+        "nem az én dolgom!",
+        "fáljon tovább",
+       "csak azzal foglalkozom hogy ki mit csinál",
+       "szeretem a zsíroskenyeret",
+       "megeszem a világot",
+        "gyökszikeh"
     ];
 
     let popup = document.createElement("div");
@@ -262,7 +271,32 @@ setInterval(spawnPopup, 2000);
 setInterval(spawnBoxes, 300);
 
 </script>
+// 💀 ZSÍRLÉNY SPAWN
+function spawnCreature(){
 
+    let c = document.createElement("div");
+    c.className = "creature";
+
+    c.style.top = (Math.random()*80 + 10) + "%";
+    c.style.left = Math.random()*100 + "%";
+
+    document.body.appendChild(c);
+
+    // 👀 "néz rád"
+    setInterval(()=>{
+        let eyes = c.querySelectorAll("*");
+        c.style.transform =
+            "translate(" + (Math.random()*20-10) + "px," + (Math.random()*20-10) + "px)";
+    }, 500);
+
+    // eltűnik
+    setTimeout(()=>{
+        c.remove();
+    }, 6000);
+}
+
+// spawn loop
+setInterval(spawnCreature, 800);
 </body>
 </html>
 
