@@ -1,270 +1,258 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-<meta charset="UTF-8">
-<title>ULTRA KAOSZ FITNESS</title>
+<!DOCTYPE html> 
+<html lang="hu"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>ULTRA KAOSZ FITNESS</title> 
 
-<style>
-<footer>
-    ⚡ ULTRA KAOSZ FITNESS ⚡ | semmi sem valós
-</footer>
-    
-body{
-    margin:0;
-    color:white;
-    font-family:Arial;
-    overflow:hidden;
-    background:#111;
-    transition:background 0.2s;
-}
+<style> 
+body{ 
+margin:0; 
+color:white; 
+font-family:Arial; 
+overflow:hidden; 
+background:#111; 
+transition:background 0.2s; 
+} 
 
 /* FEJLÉC */
 header{
-    backdrop-filter: blur(12px);
-    background:rgba(255,255,255,0.1);
-    padding:20px;
-    text-align:center;
-    border-bottom:1px solid rgba(255,255,255,0.2);
+position:sticky;
+top:0;
+z-index:1000;
+backdrop-filter: blur(20px);
+background:linear-gradient(90deg, #00ffcc, #8a2be2);
+padding:20px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,255,204,0.5);
 }
 
 nav a{
-    margin:0 15px;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-    transition:0.3s;
+margin:0 15px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:0.3s;
 }
 
 nav a:hover{
-    color:#00ffcc;
+color:black;
 }
 
 /* FŐ SZÖVEG */
-.main{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:30px;
-    cursor:pointer;
-    animation:glitch 0.1s infinite;
-}
+.main{ 
+position:absolute; 
+top:50%; 
+left:50%; 
+transform:translate(-50%,-50%); 
+font-size:30px; 
+cursor:pointer; 
+animation:glitch 0.1s infinite; 
+} 
 
-@keyframes glitch{
-    0%{transform:translate(-50%,-50%) translate(0,0);}
-    50%{transform:translate(-50%,-50%) translate(5px,-5px);}
-    100%{transform:translate(-50%,-50%) translate(-5px,5px);}
-}
+@keyframes glitch{ 
+0%{transform:translate(-50%,-50%) translate(0,0);} 
+50%{transform:translate(-50%,-50%) translate(5px,-5px);} 
+100%{transform:translate(-50%,-50%) translate(-5px,5px);} 
+} 
 
-/* 💀 ÚJ: ZSÍRBÓL SZÜLETŐ KÁOSZ DOBOZOK */
-.box, .fuckyou{
-    position:absolute;
-    width:60px;
-    height:60px;
-    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
-    opacity:0.8;
-    border-radius:30%;
-    animation:
-        move 2s infinite alternate,
-        grow 0.6s ease-out;
-}
+/* 💀 DOBOZOK */
+.box, .fuckyou{ 
+position:absolute; 
+width:60px; 
+height:60px; 
+background:radial-gradient(circle, #ffb6a3, #ff7b7b); 
+opacity:0.8; 
+border-radius:30%; 
+animation: move 2s infinite alternate, grow 0.6s ease-out; 
+} 
 
-.fuckyou{
-    background:radial-gradient(circle, #ff69b4, #8a2be2);
-    animation:
-        move 0.8s infinite alternate,
-        grow 0.4s ease-out;
-}
+.fuckyou{ 
+background:radial-gradient(circle, #ff69b4, #8a2be2); 
+animation: move 0.8s infinite alternate, grow 0.4s ease-out; 
+} 
 
-/* MOZGÁS */
-@keyframes move{
-    from{transform:translate(0,0);}
-    to{transform:translate(300px,150px);}
-}
+@keyframes move{ 
+from{transform:translate(0,0);} 
+to{transform:translate(300px,150px);} 
+} 
 
-/* 💥 "ZSÍRBÓL KINÖVÉS" */
-@keyframes grow{
-    0%{
-        transform:scale(0);
-        filter:blur(12px);
-        opacity:0;
-        border-radius:50%;
-    }
-    50%{
-        transform:scale(1.3);
-    }
-    100%{
-        transform:scale(1);
-        filter:blur(0);
-        opacity:0.8;
-        border-radius:30%;
-    }
-}
+@keyframes grow{ 
+0%{ transform:scale(0); filter:blur(12px); opacity:0; border-radius:50%; } 
+50%{ transform:scale(1.3); } 
+100%{ transform:scale(1); filter:blur(0); opacity:0.8; border-radius:30%; } 
+} 
 
 /* FELUGRÓ SZÖVEG */
-.popup{
-    position:absolute;
-    font-size:22px;
-    color:#00ffcc;
-    opacity:0;
-    pointer-events:none;
-    animation:fade 1s;
+.popup{ 
+position:absolute; 
+font-size:22px; 
+color:#00ffcc; 
+opacity:0; 
+pointer-events:none; 
+animation:fade 1s; 
+} 
+
+@keyframes fade{ 
+0%{opacity:0;} 
+50%{opacity:1;} 
+100%{opacity:0;} 
+} 
+
+/* LÁBLÉC */
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+text-align:center;
+padding:15px;
+font-weight:bold;
+background:linear-gradient(90deg, #ff0066, #ffcc00, #00ffcc);
+color:black;
+box-shadow:0 -5px 20px rgba(255,0,100,0.4);
+z-index:1000;
 }
+</style> 
+</head> 
 
-@keyframes fade{
-    0%{opacity:0;}
-    50%{opacity:1;}
-    100%{opacity:0;}
-}
+<body onclick="ultraChaos()"> 
 
-</style>
-</head>
+<header> 
+<nav> 
+<a href="#">Minek?</a> 
+<a href="#">Étrendek</a> 
+<a href="#">Konditermek</a> 
+<a href="#">Előtte-utána képek</a> 
+<a href="#">Minden kérdésedre válasz</a> 
+</nav> 
+</header> 
 
-<body onclick="ultraChaos()">
+<div class="main" onclick="openVideo(event)"> 
+Napi kalória kiszámítás fogyáshoz 
+</div> 
 
-<header>
-<nav>
-<a href="#">Minek?</a>
-<a href="#">Étrendek</a>
-<a href="#">Konditermek</a>
-<a href="#">Előtte-utána képek</a>
-<a href="#">Minden kérdésedre válasz</a>
-</nav>
-</header>
+<!-- KEZDŐ DOBOZOK --> 
+<div class="box" style="top:10%; left:10%;"></div> 
+<div class="box" style="top:60%; left:30%;"></div> 
+<div class="fuckyou" style="top:30%; left:70%;"></div> 
 
-<div class="main" onclick="openVideo(event)">
-Napi kalória kiszámítás fogyáshoz
-</div>
+<audio id="music" loop> 
+<source src="metal.mp3" type="audio/mpeg"> 
+</audio> 
 
-<!-- KEZDŐ DOBOZOK -->
-<div class="box" style="top:10%; left:10%;"></div>
-<div class="box" style="top:60%; left:30%;"></div>
-<div class="fuckyou" style="top:30%; left:70%;"></div>
+<script> 
+let attempts = 0; 
+let canClick = false; 
+let playing = false; 
 
-<audio id="music" loop>
-<source src="metal.mp3" type="audio/mpeg">
-</audio>
+document.addEventListener("mousemove", function(e){ 
+document.body.style.background = 
+"radial-gradient(circle at " + e.clientX + "px " + e.clientY + "px, #00ffcc, #111)"; 
 
-<script>
+if(canClick) return; 
 
-let attempts = 0;
-let canClick = false;
-let playing = false;
+let main = document.querySelector(".main"); 
+let rect = main.getBoundingClientRect(); 
 
-/* EGÉR + HÁTTÉR */
-document.addEventListener("mousemove", function(e){
+let distance = Math.hypot( 
+e.clientX - (rect.left + rect.width/2), 
+e.clientY - (rect.top + rect.height/2) 
+); 
 
-    document.body.style.background =
-        "radial-gradient(circle at " + e.clientX + "px " + e.clientY + "px, #00ffcc, #111)";
+if(distance < 150){ 
+attempts++; 
 
-    if(canClick) return;
+main.style.top = Math.random()*80 + "%"; 
+main.style.left = Math.random()*80 + "%"; 
 
-    let main = document.querySelector(".main");
-    let rect = main.getBoundingClientRect();
+if(attempts >= 3){ 
+canClick = true; 
+main.innerText = "Máris 4000 kalóriát égettél, gratulálok, kattints"; 
+} 
+} 
+}); 
 
-    let distance = Math.hypot(
-        e.clientX - (rect.left + rect.width/2),
-        e.clientY - (rect.top + rect.height/2)
-    );
+function toggleMusic(){ 
+let music = document.getElementById("music"); 
 
-    if(distance < 150){
-        attempts++;
+if(!playing){ 
+music.play(); 
+playing = true; 
+}else{ 
+music.pause(); 
+playing = false; 
+} 
+} 
 
-        main.style.top = Math.random()*80 + "%";
-        main.style.left = Math.random()*80 + "%";
+function openVideo(event){ 
+if(!canClick){ 
+event.preventDefault(); 
+return; 
+} 
 
-        if(attempts >= 3){
-            canClick = true;
-            main.innerText = "Máris 4000 kalóriát égettél, gratulálok, kattints";
-        }
-    }
-});
+event.stopPropagation(); 
+window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ"); 
+} 
 
-/* ZENE */
-function toggleMusic(){
-    let music = document.getElementById("music");
+function randomRedirect(){ 
+let links = [ 
+"https://www.google.com/search?q=pizza", 
+"https://www.google.com/search?q=hamburger" 
+]; 
 
-    if(!playing){
-        music.play();
-        playing = true;
-    }else{
-        music.pause();
-        playing = false;
-    }
-}
+let random = links[Math.floor(Math.random()*links.length)]; 
 
-/* VIDEÓ */
-function openVideo(event){
-    if(!canClick){
-        event.preventDefault();
-        return;
-    }
+if(Math.random() < 0.4){ 
+setTimeout(()=>{ window.location.href = random; }, 1000); 
+} 
+} 
 
-    event.stopPropagation();
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-}
+function spawnPopup(){ 
+let texts = [ 
+"ne higgy nekünk!", 
+"költsd el minden pénzed!", 
+"fáj, mi?", 
+"minek ez?", 
+"nem kell?", 
+"nem az én dolgom!" 
+]; 
 
-/* RANDOM */
-function randomRedirect(){
-    let links = [
-        "https://www.google.com/search?q=pizza",
-        "https://www.google.com/search?q=hamburger"
-    ];
+let popup = document.createElement("div"); 
+popup.className = "popup"; 
+popup.innerText = texts[Math.floor(Math.random()*texts.length)]; 
 
-    let random = links[Math.floor(Math.random()*links.length)];
+popup.style.top = Math.random()*70 + "%"; 
+popup.style.left = Math.random()*80 + "%"; 
 
-    if(Math.random() < 0.4){
-        setTimeout(()=>{ window.location.href = random; }, 1000);
-    }
-}
+document.body.appendChild(popup); 
+setTimeout(()=>{ popup.remove(); }, 1000); 
+} 
 
-/* 💥 FELUGRÓ SZÖVEG */
-function spawnPopup(){
-    let texts = [
-        "ne higgy nekünk!",
-        "költsd el minden pénzed!",
-        "fáj, mi?",
-        "minek ez?",
-        "nem kell?",
-        "nem az én dolgom!"
-    ];
+function spawnBoxes(){ 
+let box = document.createElement("div"); 
 
-    let popup = document.createElement("div");
-    popup.className = "popup";
-    popup.innerText = texts[Math.floor(Math.random()*texts.length)];
+box.className = Math.random() > 0.5 ? "box" : "fuckyou"; 
 
-    popup.style.top = Math.random()*70 + "%";
-    popup.style.left = Math.random()*80 + "%";
+box.style.top = (Math.random()*80 + 10) + "%"; 
+box.style.left = Math.random()*100 + "%"; 
 
-    document.body.appendChild(popup);
-    setTimeout(()=>{ popup.remove(); }, 1000);
-}
+document.body.appendChild(box); 
 
-/* 💀 ÚJ: DOBOZ SPAWN */
-function spawnBoxes(){
-    let box = document.createElement("div");
+setTimeout(()=>{ box.remove(); }, 4000); 
+} 
 
-    box.className = Math.random() > 0.5 ? "box" : "fuckyou";
+function ultraChaos(){ 
+toggleMusic(); 
+randomRedirect(); 
+} 
 
-    box.style.top = (Math.random()*80 + 10) + "%";
-    box.style.left = Math.random()*100 + "%";
+setInterval(spawnPopup, 2000); 
+setInterval(spawnBoxes, 300); 
+</script> 
 
-    document.body.appendChild(box);
+<!-- LÁBLÉC -->
+<footer>
+🔥 ULTRA KAOSZ FITNESS 🔥 | Semmi sem valós... vagy mégis?
+</footer>
 
-    setTimeout(()=>{ box.remove(); }, 4000);
-}
-
-/* KÁOSZ */
-function ultraChaos(){
-    toggleMusic();
-    randomRedirect();
-}
-
-/* LOOP */
-setInterval(spawnPopup, 2000);
-setInterval(spawnBoxes, 300);
-
-</script>
-
-</body>
+</body> 
 </html>
