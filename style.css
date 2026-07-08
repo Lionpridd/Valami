@@ -1,3 +1,4 @@
+/* ALAP */
 *{
     margin:0;
     padding:0;
@@ -5,36 +6,44 @@
 }
 
 body{
-
     font-family:Arial, Helvetica, sans-serif;
+    color:white;
     min-height:100vh;
 
+    /* Animált szivárvány háttér */
     background:linear-gradient(
-        135deg,
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        purple
+        -45deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #8b00ff,
+        #ff1493
     );
 
-    background-size:400% 400%;
-
-    animation:rainbow 12s ease infinite;
-
-    color:white;
+    background-size:600% 600%;
+    animation:rainbowBackground 15s ease infinite;
 }
 
-@keyframes rainbow{
+/* Szivárvány animáció */
+@keyframes rainbowBackground{
 
     0%{
         background-position:0% 50%;
     }
 
+    25%{
+        background-position:50% 100%;
+    }
+
     50%{
         background-position:100% 50%;
+    }
+
+    75%{
+        background-position:50% 0%;
     }
 
     100%{
@@ -43,98 +52,70 @@ body{
 
 }
 
+/* FEJLÉC */
 header{
-
     text-align:center;
-
     padding:35px;
-
     background:rgba(0,0,0,.45);
-
     backdrop-filter:blur(12px);
-
-    box-shadow:0 5px 20px rgba(0,0,0,.3);
-
 }
 
 header h1{
-
     font-size:40px;
-
-    margin-bottom:10px;
-
 }
 
+header p{
+    margin-top:10px;
+}
+
+/* FŐ TARTALOM */
 main{
-
-    width:90%;
-
-    max-width:1200px;
-
+    max-width:1000px;
     margin:40px auto;
-
+    padding:20px;
 }
 
+/* BEVEZETŐ */
 .intro{
-
-    text-align:center;
-
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    padding:20px;
+    border-radius:15px;
     margin-bottom:30px;
-
 }
 
+/* TÁBLÁZAT */
 table{
-
     width:100%;
-
     border-collapse:collapse;
-
     background:rgba(255,255,255,.15);
-
     backdrop-filter:blur(10px);
-
-    border-radius:20px;
-
+    border-radius:15px;
     overflow:hidden;
-
 }
 
 th{
-
-    background:rgba(255,255,255,.25);
-
+    background:rgba(255,255,255,.2);
     padding:18px;
-
-    font-size:20px;
-
 }
 
 td{
-
     padding:18px;
-
-    text-align:center;
-
-    border-top:1px solid rgba(255,255,255,.2);
-
+    border-top:1px solid rgba(255,255,255,.15);
 }
 
-tbody tr:hover{
-
-    background:rgba(255,255,255,.15);
-
+tr:hover{
+    background:rgba(255,255,255,.12);
+    transition:.3s;
 }
 
+/* LÁBLÉC */
 footer{
-
-    margin-top:50px;
-
     text-align:center;
-
-    padding:25px;
-
+    padding:20px;
     background:rgba(0,0,0,.45);
-
-    backdrop-filter:blur(10px);
-
+    backdrop-filter:blur(12px);
+    position:fixed;
+    bottom:0;
+    width:100%;
 }
