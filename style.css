@@ -1,221 +1,140 @@
-/* ALAP */
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+
+    background:linear-gradient(
+        135deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        purple
+    );
+
+    background-size:400% 400%;
+
+    animation:rainbow 12s ease infinite;
+
     color:white;
-    font-family:Arial;
-    overflow:hidden;
-    background:#111;
-    transition:background 0.2s;
 }
 
-/* FEJLÉC (láthatóbb) */
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    background:#000;
-    color:white;
-    padding:20px;
-    text-align:center;
-    border-bottom:2px solid #00ffcc;
-    z-index:1000;
-}
+@keyframes rainbow{
 
-/* MENÜ */
-nav a{
-    margin:0 15px;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:#00ffcc;
-}
-
-/* LÁBLÉC (hozzáadva) */
-footer{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    text-align:center;
-    padding:12px;
-    font-weight:bold;
-    background:#000;
-    color:white;
-    border-top:2px solid #00ffcc;
-    z-index:1000;
-
-    animation: glitchFlicker 0.2s infinite;
-}
-
-/* ✂️ GLITCH DUPLICATE LAYERS */
-footer::before,
-footer::after{
-    content: attr(data-text);
-    position:absolute;
-    left:0;
-    width:100%;
-    text-align:center;
-    top:0;
-}
-
-/* 🔴 RED SHIFT */
-footer::before{
-    color:red;
-    z-index:-1;
-    animation: glitchTop 0.2s infinite;
-}
-
-/* 🔵 BLUE SHIFT */
-footer::after{
-    color:cyan;
-    z-index:-2;
-    animation: glitchBottom 0.2s infinite;
-}
-
-/* ⚡ RANDOM FLICKER */
-@keyframes glitchFlicker{
-    0%{opacity:1;}
-    50%{opacity:0.8;}
-    100%{opacity:1;}
-}
-
-/* 🔺 TOP SHIFT */
-@keyframes glitchTop{
-    0%{transform:translate(0,0);}
-    25%{transform:translate(-2px,-2px);}
-    50%{transform:translate(2px,2px);}
-    75%{transform:translate(-1px,1px);}
-    100%{transform:translate(0,0);}
-}
-
-/* 🔻 BOTTOM SHIFT */
-@keyframes glitchBottom{
-    0%{transform:translate(0,0);}
-    25%{transform:translate(2px,1px);}
-    50%{transform:translate(-2px,-1px);}
-    75%{transform:translate(1px,-2px);}
-    100%{transform:translate(0,0);}
-}
-
-/* FŐ SZÖVEG */
-.main{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:30px;
-    cursor:pointer;
-    animation:glitch 0.1s infinite;
-}
-
-/* GLITCH */
-@keyframes glitch{
-    0%{transform:translate(-50%,-50%) translate(0,0);}
-    50%{transform:translate(-50%,-50%) translate(5px,-5px);}
-    100%{transform:translate(-50%,-50%) translate(-5px,5px);}
-}
-
-/* 💀 ZSÍRBÓL SZÜLETŐ NÉGYZETEK */
-.box, .fuckyou{
-    position:absolute;
-    width:60px;
-    height:60px;
-    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
-    opacity:0.85;
-    border-radius:30%;
-    animation:
-        move 2s infinite alternate,
-        grow 0.6s ease-out;
-}
-
-/* GYORSABB */
-.fuckyou{
-    background:radial-gradient(circle, #ff69b4, #8a2be2);
-    animation:
-        move 0.8s infinite alternate,
-        grow 0.4s ease-out;
-}
-
-/* MOZGÁS */
-@keyframes move{
-    from{
-        transform:translate(0,0) rotate(0deg);
-    }
-    to{
-        transform:translate(300px,150px) rotate(180deg);
-    }
-}
-
-/* 💥 KINÖVÉS */
-@keyframes grow{
     0%{
-        transform:scale(0);
-        filter:blur(12px);
-        opacity:0;
-        border-radius:50%;
+        background-position:0% 50%;
     }
-    40%{transform:scale(1.3);}
-    70%{transform:scale(0.9);}
+
+    50%{
+        background-position:100% 50%;
+    }
+
     100%{
-        transform:scale(1);
-        filter:blur(0);
-        opacity:0.85;
-        border-radius:30%;
+        background-position:0% 50%;
     }
+
 }
 
-/* 💀 ÉLŐ ZSÍRLÉNY */
-.creature{
-    position:absolute;
-    width:70px;
-    height:70px;
-    background:radial-gradient(circle, #ffb6a3, #ff7b7b);
-    border-radius:50%;
-    opacity:0.9;
-    animation:
-        move 3s infinite alternate,
-        breathe 1.5s infinite,
-        grow 0.5s ease-out;
+header{
+
+    text-align:center;
+
+    padding:35px;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+
 }
 
-/* 👀 SZEMEK */
-.creature::before,
-.creature::after{
-    content:"";
-    position:absolute;
-    width:10px;
-    height:10px;
-    background:black;
-    border-radius:50%;
-    top:20px;
+header h1{
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
 }
 
-.creature::before{ left:18px; }
-.creature::after{ right:18px; }
+main{
 
-/* 🫁 LÉGZÉS */
-@keyframes breathe{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.1);}
-    100%{transform:scale(1);}
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
 }
 
-/* FELUGRÓ SZÖVEG */
-.popup{
-    position:absolute;
-    font-size:22px;
-    color:#00ffcc;
-    opacity:0;
-    pointer-events:none;
-    animation:fade 1s;
+.intro{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
 }
 
-@keyframes fade{
-    0%{opacity:0;}
-    50%{opacity:1;}
-    100%{opacity:0;}
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+th{
+
+    background:rgba(255,255,255,.25);
+
+    padding:18px;
+
+    font-size:20px;
+
+}
+
+td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.2);
+
+}
+
+tbody tr:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(10px);
+
 }
